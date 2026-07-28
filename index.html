@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kishca | Hochwertige Stoffe & Holzwerke aus Indien</title>
+  <style>
+    :root{
+      --bg:#f6f0e8;
+      --card:#fffaf4;
+      --txt:#2f241c;
+      --muted:#6f5a4b;
+      --accent:#8a6246;
+      --accent2:#c7a68a;
+      --border:#e7d7c7;
+      --shadow:0 18px 50px rgba(73,49,32,.12);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:'Segoe UI', Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top, #fff 0%, var(--bg) 50%, #efe2d2 100%);
+      color:var(--txt);
+    }
+    a{text-decoration:none;color:inherit}
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      backdrop-filter:blur(16px);
+      background:rgba(255,250,244,.82);
+      border-bottom:1px solid rgba(231,215,199,.85);
+      box-shadow:0 8px 30px rgba(0,0,0,.04);
+    }
+    .nav-inner{
+      max-width:1200px;
+      margin:auto;
+      padding:18px 24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+    }
+    .logo-text {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 1px;
+    }
+    .menu{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+    .menu a{
+      padding:11px 16px;
+      border-radius:999px;
+      color:var(--muted);
+      border:1px solid transparent;
+      transition:.25s ease;
+      font-weight:600;
+      font-size:0.95rem;
+    }
+    .menu a:hover,.menu a.active{
+      background:#fff;
+      color:var(--txt);
+      border-color:var(--border);
+      box-shadow:0 10px 24px rgba(73,49,32,.08);
+    }
+    .hero, .section{
+      max-width:1200px;
+      margin:0 auto;
+      padding:72px 24px;
+    }
+    .hero{
+      text-align:center;
+      min-height:calc(100vh - 96px);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+    }
+    .eyebrow{
+      display:inline-block;
+      padding:10px 18px;
+      border-radius:999px;
+      background:rgba(138,98,70,.1);
+      color:var(--accent);
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin-bottom:20px;
+      font-size:0.9rem;
+    }
+    h1{
+      margin:0;
+      font-size:clamp(3rem,7vw,6.5rem);
+      line-height:.95;
+      letter-spacing:.02em;
+    }
+    .hero p{
+      max-width:760px;
+      margin:22px auto 0;
+      font-size:1.08rem;
+      line-height:1.8;
+      color:var(--muted);
+    }
+    .cta{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      justify-content:center;
+      margin-top:34px;
+    }
+    .btn{
+      padding:14px 22px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:#fff;
+      color:var(--txt);
+      font-weight:700;
+      box-shadow:0 10px 28px rgba(73,49,32,.08);
+      transition:.25s ease;
+      cursor:pointer;
+      display:inline-block;
+      font-size:0.95rem;
+    }
+    .btn.primary{
+      background:linear-gradient(145deg, var(--accent), #6e4b38);
+      color:#fff;
+      border-color:transparent;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .panel{
+      background:rgba(255,250,244,.92);
+      border:1px solid var(--border);
+      border-radius:28px;
+      padding:34px;
+      box-shadow:var(--shadow);
+    }
+    .section-title{
+      text-align:center;
+      font-size:2rem;
+      margin:0 0 28px;
+      font-weight:700;
+    }
+    .products-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(190px, 1fr));
+      gap:18px;
+    }
+    .product-card{
+      background:#fff;
+      border-radius:22px;
+      overflow:hidden;
+      border:1px solid var(--border);
+      box-shadow:0 10px 24px rgba(73,49,32,.08);
+      cursor:pointer;
+      transition:.25s ease;
+    }
+    .product-card:hover{transform:translateY(-4px)}
+    .product-card img{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+      display:block;
+    }
+    .product-caption{
+      padding:14px;
+      text-align:center;
+      font-weight:700;
+      color:var(--muted);
+      background:linear-gradient(180deg,#fff,#faf4ec);
+    }
+    .form{max-width:900px;margin:0 auto}
+    .form-row{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:16px;
+      margin-bottom:16px;
+    }
+    .field label{
+      display:block;
+      margin:0 0 8px;
+      color:var(--muted);
+      font-size:.95rem;
+      font-weight:700;
+    }
+    .field input{
+      width:100%;
+      padding:15px 16px;
+      border-radius:16px;
+      border:1px solid var(--border);
+      background:#fff;
+      color:var(--txt);
+      font-size:1rem;
+      outline:none;
+    }
+    .order-container{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:24px;
+      max-width:1000px;
+      margin:0 auto;
+    }
+    .glass-panel{
+      background:rgba(255,250,244,.92);
+      border:1px solid var(--border);
+      border-radius:22px;
+      padding:30px;
+      box-shadow:var(--shadow);
+    }
+    .glass-panel h3{
+      font-size:1.4rem;
+      margin:0 0 14px;
+      color:var(--txt);
+    }
+    .glass-panel p{
+      color:var(--muted);
+      font-size:0.95rem;
+      line-height:1.6;
+    }
+    .feature-list{
+      list-style:none;
+      padding:0;
+      margin:18px 0 0;
+    }
+    .feature-list li{
+      margin-bottom:10px;
+      color:var(--accent);
+      font-weight:600;
+      font-size:0.95rem;
+    }
+    .input-field{
+      width:100%;
+      padding:15px 16px;
+      margin-bottom:16px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:#fff;
+      color:var(--txt);
+      font-size:1rem;
+      outline:none;
+      font-family:inherit;
+      transition:.25s ease;
+    }
+    .input-field:focus{
+      border-color:var(--accent);
+      box-shadow:0 0 0 3px rgba(138,98,70,.15);
+    }
+    .input-field::placeholder{
+      color:#b8a494;
+    }
+    textarea.input-field{
+      resize:vertical;
+      min-height:100px;
+    }
+    .honeypot{
+      position:absolute;
+      left:-9999px;
+      top:-9999px;
+      opacity:0;
+      height:0;
+      width:0;
+      z-index:-1;
+    }
+    .form-message{
+      padding:14px 18px;
+      border-radius:12px;
+      margin-top:14px;
+      font-weight:600;
+      display:none;
+      text-align:center;
+      font-size:0.95rem;
+    }
+    .form-message.success{
+      display:block;
+      background:#e8f5e9;
+      border:1px solid #4caf50;
+      color:#2e7d32;
+    }
+    .form-message.error{
+      display:block;
+      background:#fce4ec;
+      border:1px solid #e57373;
+      color:#c62828;
+    }
+    footer{
+      padding:30px 24px 46px;
+      color:var(--muted);
+    }
+    .footer-row{
+      max-width:1200px;
+      margin:auto;
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+      border-top:1px solid var(--border);
+      padding-top:18px;
+      font-size:0.9rem;
+    }
+    .legal{display:flex;gap:18px;flex-wrap:wrap}
+    .legal a{color:var(--accent);text-decoration:underline}
+    .modal{
+      position:fixed;
+      inset:0;
+      background:rgba(20,14,10,.82);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:2000;
+      padding:24px;
+    }
+    .modal.open{display:flex}
+    .modal img{
+      max-width:min(92vw, 1100px);
+      max-height:88vh;
+      border-radius:22px;
+      box-shadow:0 20px 60px rgba(0,0,0,.35);
+      border:5px solid rgba(255,255,255,.12);
+      background:#fff;
+    }
+    .close{
+      position:fixed;
+      top:22px;
+      right:22px;
+      width:48px;
+      height:48px;
+      border:none;
+      border-radius:50%;
+      font-size:1.8rem;
+      background:#fff;
+      color:#222;
+      cursor:pointer;
+      box-shadow:0 12px 30px rgba(0,0,0,.25);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:2001;
+    }
+    .info-box{
+      max-width:720px;
+      margin:48px auto 0;
+      padding:24px;
+      background:#f0f7ff;
+      border-radius:20px;
+      border:1px solid #dbe6ff;
+    }
+    .info-box h3{
+      margin:0 0 16px;
+      color:var(--txt);
+      font-size:1.6rem;
+    }
+    .info-box p{
+      margin:0;
+      font-size:1.05rem;
+      line-height:1.7;
+      color:var(--muted);
+    }
+    @media (max-width:760px){
+      .nav-inner{flex-direction:column;align-items:flex-start}
+      .hero{min-height:auto;padding-top:40px}
+      .form-row{grid-template-columns:1fr}
+      .panel{padding:22px}
+      .order-container{grid-template-columns:1fr}
+      .glass-panel{padding:22px}
+      .logo-text{font-size:22px}
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <div class="logo-container">
+        <img src="/Users/chetanadhake/Downloads/ChatGPT Image May 22, 2026 at 08_46_50 AM.png" alt="Kishca Logo" class="logo">
+        <span class="logo-text">Kishca</span>
+      </div>
+      <nav class="menu">
+        <a href="#home" class="active">Homepage</a>
+        <a href="#produkte">Produkte</a>
+        <a href="#kontaktdaten">Kontaktdaten</a>
+        <a href="#bestellen">Bestellen</a>
+        <a href="#about">About us</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home" class="hero">
+    <div class="eyebrow">Holzwerke aus Indien</div>
+    <h1>Kishca</h1>
+    <p>Kishca ist eine Firma mit hochwertigen Materialien aus Indien.</p>
+    <div class="cta">
+      <a class="btn primary" href="#produkte">Unsere Produkte</a>
+      <a class="btn" href="#kontaktdaten">Kontaktdaten</a>
+    </div>
+
+    <div class="info-box">
+      <h3>Über Kishca</h3>
+      <p>Kishca ist eine vertrauenswürdige und loyale Transportfirma, die einzigartige Stoffe und Kunstwerke aus Indien hier euch vorzeigt und verkauft. Dadurch gibt sie jedem eine Chance, Kultur und dessen Diversität in seinen Herzen zu tragen und zu respektieren.</p>
+    </div>
+  </main>
+
+  <section class="section" id="produkte">
+    <div class="panel">
+      <h2 class="section-title">Unsere Produkte</h2>
+      <div class="products-grid" id="productGrid"></div>
+    </div>
+  </section>
+
+  <section class="section" id="kontaktdaten">
+    <div class="panel">
+      <h2 class="section-title">Kontaktdaten</h2>
+      <div class="form">
+        <div class="form-row">
+          <div class="field"><label>Firma</label><input type="text" value="Kishca" readonly></div>
+          <div class="field"><label>Telefon</label><input type="text" value="+49 152 58733160" readonly></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label>Email</label><input type="email" value="info@kishca.com" readonly></div>
+          <div class="field"><label>Adresse</label><input type="text" value="online" readonly></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== BESTELLFORMULAR ========== -->
+  <section class="section" id="bestellen">
+    <div class="panel">
+      <h2 class="section-title">Jetzt Bestellen</h2>
+      <div class="order-container">
+        <div class="glass-panel">
+          <h3>So funktioniert's</h3>
+          <p>Geben Sie Ihre Daten und das gewünschte Produkt ein. Wir prüfen die Verfügbarkeit und senden Ihnen ein Angebot mit Lieferzeit zu.</p>
+          <ul class="feature-list">
+            <li>✔ Schnelle Angebotserstellung</li>
+            <li>✔ Deutschlandweite Lieferung</li>
+            <li>✔ Musteranforderung möglich</li>
+            <li>✔ Fachkundige Beratung</li>
+            <li>✔ Großhandelspreise</li>
+          </ul>
+        </div>
+
+        <div class="glass-panel">
+          <h3>Bestellformular</h3>
+          <p style="margin-bottom:18px;">Füllen Sie das Formular aus und wir melden uns umgehend.</p>
+          
+          <form id="order-form" method="POST" novalidate>
+            <div class="honeypot">
+              <label for="website">Website</label>
+              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+            </div>
+            
+            <input class="input-field" type="text" name="name" id="name" placeholder="Ihr vollständiger Name *" required />
+            <input class="input-field" type="email" name="email" id="email" placeholder="Ihre E-Mail-Adresse *" required />
+            <input class="input-field" type="tel" name="phone" id="phone" placeholder="Ihre Telefonnummer *" required />
+            <input class="input-field" type="text" name="product" id="product" placeholder="Gewünschtes Produkt (z.B. Stoff, Holzwerk) *" required />
+            <textarea class="input-field" name="message" id="message" placeholder="Zusätzliche Anmerkungen (Menge, Maße, Lieferadresse)"></textarea>
+            
+            <button type="submit" class="btn primary" style="width:100%;text-align:center;border:none;font-size:1rem;padding:16px;">
+              Bestellung absenden 🪵
+            </button>
+            
+            <div id="form-message" class="form-message"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="panel">
+      <h2 class="section-title">Über uns</h2>
+      <p style="max-width:720px;margin:0 auto;font-size:1.1rem;line-height:1.7;color:var(--muted)">
+        <strong>Kishca</strong> ist mehr als nur eine Transportfirma – wir sind dein zuverlässiger Partner für den internationalen Handel mit hochwertigen Materialien aus Indien. Mit Leidenschaft verbinden wir die reiche Tradition indischer Handwerkskunst mit modernster europäischer Logistik und liefern Qualität direkt zu dir. Unser Geschäftsmodell ist einfach und effektiv: Wir beschaffen Stoffe und Holzwerke direkt bei renommierten Produzenten in Indien, organisieren den sicheren Transport mit 24/7 Erreichbarkeit, führen umfassende Qualitätskontrollen durch und sorgen für pünktliche Lieferung in ganz Europa – immer zu fairen Preisen ohne unnötige Zwischenhändler. Seit unserer Gründung bauen wir auf langfristige Partnerschaften mit indischen Herstellern und europäischen Kunden auf. Jedes Projekt, egal ob kleine Einzelbestellung oder umfangreicher Großauftrag, erhält bei uns höchste Priorität und individuelle Betreuung von der ersten Anfrage bis zur finalen Auslieferung. Unsere Kernstärken sind persönlicher Service, transparente Prozesse, schnelle Umsetzung und kompromisslose Qualität. Wir wissen, dass im Handel Vertrauen und Zuverlässigkeit entscheidend sind – deshalb steht bei Kishca immer der Kunde im Mittelpunkt. Von der sorgfältigen Auswahl der Produzenten über die Qualitätsprüfung bis hin zur termingerechten Lieferung begleiten wir dich in jedem Schritt. Qualität, Pünktlichkeit und Professionalität sind bei uns nicht nur Versprechen, sondern unser täglicher Standard. Wähle Kishca als deinen Partner für Indien-Importe – und erlebe, wie einfach internationaler Handel sein kann. Wir freuen uns auf die Zusammenarbeit mit dir!
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-row">
+      <div>© 2026 Kishca-Handwerk</div>
+      <div class="legal">
+        <a href="/Users/chetanadhake/Downloads/Impressum-Kishca.html">Impressum</a>
+        <a href="/Users/chetanadhake/Downloads/Datenschutzfinal.html">Datenschutz</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal" id="modal">
+    <button class="close" id="closeModal">&times;</button>
+    <img id="modalImg" alt="Produktbild groß">
+  </div>
+
+  <script>
+    // Produktbilder
+    const myImages = [
+      '/Users/chetanadhake/Documents/Gemini_Generated_Image_mutyx2mutyx2muty.png',
+      '/Users/chetanadhake/Documents/Gemini_Generated_Image_20azf920azf920az.png',
+      '/Users/chetanadhake/Documents/Gemini_Generated_Image_4gezqm4gezqm4gez.png',
+      '/Users/chetanadhake/Documents/Bilder/BIld1.jpg',
+      '/Users/chetanadhake/Documents/Bilder/Bild3.jpg',
+      '/Users/chetanadhake/Downloads/51a-npfq87L._SL1080_.jpg',
+      '/Users/chetanadhake/Downloads/51JSrsGargL._SL1080_.jpg',
+      '/Users/chetanadhake/Documents/Bilder/Bild5.jpg',
+      '/Users/chetanadhake/Documents/Bilder/Bild7.jpg',
+      '/Users/chetanadhake/Documents/Bilder/Bild8.jpg',
+      '/Users/chetanadhake/Documents/Bilder/Bild9.jpg',
+      '/Users/chetanadhake/Documents/Bilder/Bild10.jpg',
+      '/Users/chetanadhake/Documents/Bilder/Bild11.jpg',
+      '/Users/chetanadhake/Documents/Bilder/Bild12.jpg',
+      '/Users/chetanadhake/Documents/Bilder/Bild13.jpg',
+      '/Users/chetanadhake/Documents/Bilder/Bild14.jpg',
+      '/Users/chetanadhake/Documents/Bilder/Bild15.jpg',
+      '/Users/chetanadhake/Downloads/WhatsApp Image 2026-04-16 at 10.46.58.jpeg',
+      '/Users/chetanadhake/Documents/Bilder/Bild18.jpg',
+      '/Users/chetanadhake/Documents/Bilder/Bild19.jpg',
+      '/Users/chetanadhake/Documents/Bilder/Bild20.jpg'
+    ];
+
+    const productGrid = document.getElementById('productGrid');
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modalImg');
+    const closeModal = document.getElementById('closeModal');
+
+    myImages.forEach((src, index) => {
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      card.innerHTML = `
+        <img src="${src}" alt="Produkt ${index + 1}">
+        <div class="product-caption">Produkt ${index + 1}</div>
+      `;
+      card.querySelector('img').addEventListener('click', () => {
+        modalImg.src = src;
+        modal.classList.add('open');
+      });
+      productGrid.appendChild(card);
+    });
+
+    closeModal.addEventListener('click', () => modal.classList.remove('open'));
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.remove('open');
+    });
+
+    // ========== BESTELLFORMULAR - DIREKTER E-MAIL VERSAND ==========
+    const orderForm = document.getElementById('order-form');
+    const formMessage = document.getElementById('form-message');
+
+    if (orderForm) {
+      orderForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Honeypot prüfen
+        const honeypot = document.getElementById('website');
+        if (honeypot && honeypot.value !== '') {
+          formMessage.className = 'form-message success';
+          formMessage.textContent = 'Vielen Dank! Ihre Bestellung wurde gesendet.';
+          orderForm.reset();
+          return;
+        }
+        
+        // Werte holen
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const product = document.getElementById('product').value.trim();
+        const message = document.getElementById('message').value.trim();
+        
+        // Validierung
+        let valid = true;
+        const fields = [
+          { id: 'name', value: name },
+          { id: 'email', value: email },
+          { id: 'phone', value: phone },
+          { id: 'product', value: product }
+        ];
+        
+        fields.forEach(field => {
+          const el = document.getElementById(field.id);
+          if (!field.value) {
+            valid = false;
+            el.style.borderColor = '#e57373';
+            el.style.boxShadow = '0 0 0 2px rgba(229,115,115,0.3)';
+          } else {
+            el.style.borderColor = '#e7d7c7';
+            el.style.boxShadow = 'none';
+          }
+        });
+        
+        // E-Mail validieren
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (email && !emailPattern.test(email)) {
+          valid = false;
+          const emailEl = document.getElementById('email');
+          emailEl.style.borderColor = '#e57373';
+          emailEl.style.boxShadow = '0 0 0 2px rgba(229,115,115,0.3)';
+          formMessage.className = 'form-message error';
+          formMessage.textContent = 'Bitte geben Sie eine gültige E-Mail-Adresse ein.';
+          return;
+        }
+        
+        // Telefon validieren
+        const phonePattern = /^[+]?[\d\s()-]{6,20}$/;
+        if (phone && !phonePattern.test(phone)) {
+          valid = false;
+          const phoneEl = document.getElementById('phone');
+          phoneEl.style.borderColor = '#e57373';
+          phoneEl.style.boxShadow = '0 0 0 2px rgba(229,115,115,0.3)';
+          formMessage.className = 'form-message error';
+          formMessage.textContent = 'Bitte geben Sie eine gültige Telefonnummer ein.';
+          return;
+        }
+        
+        if (!valid) {
+          formMessage.className = 'form-message error';
+          formMessage.textContent = 'Bitte füllen Sie alle Pflichtfelder (*) aus.';
+          return;
+        }
+        
+        // E-Mail per mailto-Link öffnen (funktioniert ohne Server!)
+        const subject = encodeURIComponent('[NEUE BESTELLUNG] ' + product + ' - ' + name);
+        const body = encodeURIComponent(
+          '👤 Kunde: ' + name + '\n' +
+          '📧 E-Mail: ' + email + '\n' +
+          '📞 Telefon: ' + phone + '\n' +
+          '🪵 Produkt: ' + product + '\n' +
+          '📝 Anmerkungen: ' + (message || 'Keine') + '\n\n' +
+          '---\n' +
+          'Gesendet über Kishca Bestellformular\n' +
+          '📅 ' + new Date().toLocaleString('de-DE')
+        );
+        
+        // Öffnet das E-Mail-Programm des Nutzers
+        window.location.href = 'mailto:info@kishca.com?subject=' + subject + '&body=' + body;
+        
+        // Erfolgsmeldung
+        formMessage.className = 'form-message success';
+        formMessage.textContent = '🎉 Ihr E-Mail-Programm wurde geöffnet. Bitte senden Sie die E-Mail ab. Vielen Dank!';
+        orderForm.reset();
+        
+        setTimeout(() => { formMessage.style.display = 'none'; }, 8000);
+      });
+      
+      // Echtzeit-Validierung
+      orderForm.querySelectorAll('.input-field').forEach(field => {
+        field.addEventListener('input', function() {
+          this.style.borderColor = '#e7d7c7';
+          this.style.boxShadow = 'none';
+        });
+      });
+    }
+
+    // Aktive Navigation
+    const navLinks = document.querySelectorAll('.menu a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        navLinks.forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
