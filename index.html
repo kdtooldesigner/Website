@@ -501,52 +501,87 @@
   </div>
 
   <script>
-    // Produktbilder
+ <script>
+  document.addEventListener("DOMContentLoaded", () => {
     const myImages = [
-    ‘Gemini_Generated_Image_20azf920azf920az.png’,
-‘Gemini_Generated_Image_4gezqm4gezqm4gez.png’,
-‘Gemini_Generated_Image_mutyx2mutyx2muty.png’,
-‘JPEG-Bild 2.JPEG’,
-‘JPEG-Bild.JPEG’,
-‘PHOTO-2025-11-18-14-08-20 2.jpg’,
-‘PHOTO-2025-11-18-14-08-20 3.jpg’,
-‘PHOTO-2025-11-18-14-08-20.jpg’,
-‘PHOTO-2025-11-18-14-08-21 2.jpg’,
-‘PHOTO-2025-11-18-14-08-21 3.jpg’,
-‘PHOTO-2025-11-18-14-08-21 4.jpg’,
-‘PHOTO-2025-11-18-14-08-21 5.jpg’,
-‘PHOTO-2025-11-18-14-08-21 6.jpg’,
-‘PHOTO-2025-11-18-14-08-21 7.jpg’,
-‘PHOTO-2025-11-18-14-08-21 8.jpg’,
-‘PHOTO-2025-11-18-14-08-21 9.jpg’,
-‘PHOTO-2025-11-18-14-08-21.jpg’,
-‘PHOTO-2025-11-18-14-08-22.jpg’,
-‘PHOTO-2025-11-18-14-08-23 2.jpg’
+      "Gemini_Generated_Image_20azf920azf920az.png",
+      "Gemini_Generated_Image_4gezqm4gezqm4gez.png",
+      "Gemini_Generated_Image_mutyx2mutyx2muty.png",
+      "JPEG-Bild 2.JPEG",
+      "JPEG-Bild.JPEG",
+      "PHOTO-2025-11-18-14-08-20 2.jpg",
+      "PHOTO-2025-11-18-14-08-20 3.jpg",
+      "PHOTO-2025-11-18-14-08-20.jpg",
+      "PHOTO-2025-11-18-14-08-21 2.jpg",
+      "PHOTO-2025-11-18-14-08-21 3.jpg",
+      "PHOTO-2025-11-18-14-08-21 4.jpg",
+      "PHOTO-2025-11-18-14-08-21 5.jpg",
+      "PHOTO-2025-11-18-14-08-21 6.jpg",
+      "PHOTO-2025-11-18-14-08-21 7.jpg",
+      "PHOTO-2025-11-18-14-08-21 8.jpg",
+      "PHOTO-2025-11-18-14-08-21 9.jpg",
+      "PHOTO-2025-11-18-14-08-21.jpg",
+      "PHOTO-2025-11-18-14-08-22.jpg",
+      "PHOTO-2025-11-18-14-08-23 2.jpg"
     ];
 
-    const productGrid = document.getElementById('productGrid');
-    const modal = document.getElementById('modal');
-    const modalImg = document.getElementById('modalImg');
-    const closeModal = document.getElementById('closeModal');
+    const productGrid = document.getElementById("productGrid");
+    const modal = document.getElementById("modal");
+    const modalImg = document.getElementById("modalImg");
+    const closeModal = document.getElementById("closeModal");
+
+    if (!productGrid || !modal || !modalImg || !closeModal) return;
+
+    productGrid.innerHTML = "";
 
     myImages.forEach((src, index) => {
-      const card = document.createElement('div');
-      card.className = 'product-card';
-      card.innerHTML = `
-        <img src="${src}" alt="Produkt ${index + 1}">
-        <div class="product-caption">Produkt ${index + 1}</div>
-      `;
-      card.querySelector('img').addEventListener('click', () => {
-        modalImg.src = src;
-        modal.classList.add('open');
+      const card = document.createElement("div");
+      card.className = "product-card";
+
+      const img = document.createElement("img");
+      img.src = src;
+      img.alt = `Produkt ${index + 1}`;
+      img.loading = "lazy";
+
+      img.addEventListener("error", () => {
+        img.src = "placeholder.jpg";
+        img.alt = `Bild ${index + 1} konnte nicht geladen werden`;
       });
+
+      img.addEventListener("click", () => {
+        modalImg.src = src;
+        modal.classList.add("open");
+      });
+
+      const caption = document.createElement("div");
+      caption.className = "product-caption";
+      caption.textContent = `Produkt ${index + 1}`;
+
+      card.appendChild(img);
+      card.appendChild(caption);
       productGrid.appendChild(card);
     });
 
-    closeModal.addEventListener('click', () => modal.classList.remove('open'));
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) modal.classList.remove('open');
+    closeModal.addEventListener("click", () => {
+      modal.classList.remove("open");
+      modalImg.src = "";
     });
+
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.classList.remove("open");
+        modalImg.src = "";
+      }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        modal.classList.remove("open");
+        modalImg.src = "";
+      }
+    });
+  });
+</script>
 
     // ========== BESTELLFORMULAR - DIREKTER E-MAIL VERSAND ==========
     const orderForm = document.getElementById('order-form');
