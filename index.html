@@ -517,9 +517,9 @@
   </div>
 
   <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    // ========== VOLLSTÄNDIGE BILDLISTE (alle 19 Fotos) ==========
-    // Jeder Dateiname wurde exakt aus der Liste übernommen
+  document.addEventListener("DOMContentLoaded", function() {
+    // ========== ALLE 19 BILDER AUS IHRER LISTE ==========
+    // Jeder Dateiname wurde exakt aus der Liste übernommen - inklusive Leerzeichen
     const productImages = [
       'Gemini_Generated_Image_20azf920azf920az.png',
       'Gemini_Generated_Image_4gezqm4gezqm4gez.png',
@@ -550,37 +550,37 @@
 
     // Produktanzahl anzeigen
     if (productCount) {
-      productCount.textContent = `📦 ${productImages.length} Produkte`;
+      productCount.textContent = '📦 ' + productImages.length + ' Produkte';
     }
 
     // Grid befüllen
     if (productGrid) {
       productGrid.innerHTML = '';
 
-      productImages.forEach((src, index) => {
+      productImages.forEach(function(src, index) {
         const card = document.createElement('div');
         card.className = 'product-card';
 
         const img = document.createElement('img');
         img.src = src;
-        img.alt = `Produkt ${index + 1}`;
+        img.alt = 'Produkt ' + (index + 1);
         img.loading = 'lazy';
 
         // Fehlerbehandlung: Falls Bild nicht geladen werden kann
         img.addEventListener('error', function() {
           this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"%3E%3Crect width="200" height="200" fill="%23f0ebe5"/%3E%3Ctext x="50%" y="50%" font-family="Arial" font-size="14" fill="%23999" text-anchor="middle" dy=".3em"%3EBild nicht gefunden%3C/text%3E%3C/svg%3E';
-          this.alt = `Bild ${index + 1} konnte nicht geladen werden`;
+          this.alt = 'Bild ' + (index + 1) + ' konnte nicht geladen werden';
         });
 
         // Klick öffnet Modal
-        img.addEventListener('click', () => {
+        img.addEventListener('click', function() {
           modalImg.src = src;
           modal.classList.add('open');
         });
 
         const caption = document.createElement('div');
         caption.className = 'product-caption';
-        caption.textContent = `🪵 Produkt ${index + 1}`;
+        caption.textContent = '🪵 Produkt ' + (index + 1);
 
         card.appendChild(img);
         card.appendChild(caption);
@@ -590,14 +590,14 @@
 
     // ========== MODAL ==========
     if (closeModal) {
-      closeModal.addEventListener('click', () => {
+      closeModal.addEventListener('click', function() {
         modal.classList.remove('open');
         modalImg.src = '';
       });
     }
 
     if (modal) {
-      modal.addEventListener('click', (e) => {
+      modal.addEventListener('click', function(e) {
         if (e.target === modal) {
           modal.classList.remove('open');
           modalImg.src = '';
@@ -605,7 +605,7 @@
       });
     }
 
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
         modal.classList.remove('open');
         modalImg.src = '';
@@ -645,7 +645,7 @@
           { id: 'product', value: product }
         ];
         
-        fields.forEach(field => {
+        fields.forEach(function(field) {
           const el = document.getElementById(field.id);
           if (!field.value) {
             valid = false;
@@ -706,11 +706,13 @@
         formMessage.textContent = '🎉 Ihr E-Mail-Programm wurde geöffnet. Bitte senden Sie die E-Mail ab. Vielen Dank!';
         orderForm.reset();
         
-        setTimeout(() => { formMessage.style.display = 'none'; }, 8000);
+        setTimeout(function() { 
+          formMessage.style.display = 'none'; 
+        }, 8000);
       });
       
       // Echtzeit-Validierung
-      orderForm.querySelectorAll('.input-field').forEach(field => {
+      orderForm.querySelectorAll('.input-field').forEach(function(field) {
         field.addEventListener('input', function() {
           this.style.borderColor = '#e7d7c7';
           this.style.boxShadow = 'none';
@@ -720,9 +722,11 @@
 
     // ========== AKTIVE NAVIGATION ==========
     const navLinks = document.querySelectorAll('.menu a');
-    navLinks.forEach(link => {
+    navLinks.forEach(function(link) {
       link.addEventListener('click', function() {
-        navLinks.forEach(l => l.classList.remove('active'));
+        navLinks.forEach(function(l) { 
+          l.classList.remove('active'); 
+        });
         this.classList.add('active');
       });
     });
@@ -730,15 +734,15 @@
     // Scroll-basierte Navigation aktivieren
     const sections = document.querySelectorAll('section[id], main[id]');
     if (sections.length) {
-      window.addEventListener('scroll', () => {
+      window.addEventListener('scroll', function() {
         let current = '';
-        sections.forEach(section => {
+        sections.forEach(function(section) {
           const sectionTop = section.offsetTop - 120;
           if (window.scrollY >= sectionTop) {
             current = section.getAttribute('id');
           }
         });
-        navLinks.forEach(link => {
+        navLinks.forEach(function(link) {
           link.classList.remove('active');
           if (link.getAttribute('href') === '#' + current) {
             link.classList.add('active');
