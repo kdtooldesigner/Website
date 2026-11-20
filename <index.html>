@@ -13,7 +13,7 @@
     .nav{position:sticky;top:0;z-index:1000;backdrop-filter:blur(16px);background:rgba(255,250,244,.82);border-bottom:1px solid rgba(231,215,199,.85);box-shadow:0 8px 30px rgba(0,0,0,.04)}
     .nav-inner{max-width:1200px;margin:auto;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
     .logo-container{display:flex;align-items:center;gap:12px}
-    .logo{width:60px;height:60px;object-fit:contain}
+    .logo{width:60px;height:60px;object-fit:contain;border-radius:12px}
     .logo-text{font-size:28px;font-weight:700;color:var(--accent);letter-spacing:1px}
     .menu{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
     .menu a{padding:11px 16px;border-radius:999px;color:var(--muted);border:1px solid transparent;transition:.25s ease;font-weight:600;font-size:.95rem}
@@ -29,15 +29,11 @@
     .btn:hover{transform:translateY(-2px)}
     .panel{background:rgba(255,250,244,.92);border:1px solid var(--border);border-radius:28px;padding:34px;box-shadow:var(--shadow)}
     .section-title{text-align:center;font-size:2rem;margin:0 0 28px;font-weight:700}
-    .products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:18px}
+    .products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px}
     .product-card{background:#fff;border-radius:22px;overflow:hidden;border:1px solid var(--border);box-shadow:0 10px 24px rgba(73,49,32,.08);cursor:pointer;transition:.25s ease}
     .product-card:hover{transform:translateY(-4px)}
     .product-card img{width:100%;height:220px;object-fit:cover;display:block}
     .product-caption{padding:14px;text-align:center;font-weight:700;color:var(--muted);background:linear-gradient(180deg,#fff,#faf4ec)}
-    .form{max-width:900px;margin:0 auto}
-    .form-row{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:16px}
-    .field label{display:block;margin:0 0 8px;color:var(--muted);font-size:.95rem;font-weight:700}
-    .field input{width:100%;padding:15px 16px;border-radius:16px;border:1px solid var(--border);background:#fff;color:var(--txt);font-size:1rem;outline:none}
     .order-container{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1000px;margin:0 auto}
     .glass-panel{background:rgba(255,250,244,.92);border:1px solid var(--border);border-radius:22px;padding:30px;box-shadow:var(--shadow)}
     .glass-panel h3{font-size:1.4rem;margin:0 0 14px;color:var(--txt)}
@@ -51,7 +47,6 @@
     .honeypot{position:absolute;left:-9999px;top:-9999px;opacity:0;height:0;width:0;z-index:-1}
     .form-message{padding:14px 18px;border-radius:12px;margin-top:14px;font-weight:600;display:none;text-align:center;font-size:.95rem}
     .form-message.success{display:block;background:#e8f5e9;border:1px solid #4caf50;color:#2e7d32}
-    .form-message.error{display:block;background:#fce4ec;border:1px solid #e57373;color:#c62828}
     footer{padding:30px 24px 46px;color:var(--muted)}
     .footer-row{max-width:1200px;margin:auto;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;border-top:1px solid var(--border);padding-top:18px;font-size:.9rem}
     .legal{display:flex;gap:18px;flex-wrap:wrap}
@@ -60,14 +55,16 @@
     .modal.open{display:flex}
     .modal img{max-width:min(92vw,1100px);max-height:88vh;border-radius:22px;box-shadow:0 20px 60px rgba(0,0,0,.35);border:5px solid rgba(255,255,255,.12);background:#fff}
     .close{position:fixed;top:22px;right:22px;width:48px;height:48px;border:none;border-radius:50%;font-size:1.8rem;background:#fff;color:#222;cursor:pointer;box-shadow:0 12px 30px rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;z-index:2001}
-    .info-box{max-width:720px;margin:48px auto 0;padding:24px;border-radius:20px;background:var(--card);border:1px solid var(--border);box-shadow:var(--shadow)}
-    @media (max-width:768px){.form-row,.order-container{grid-template-columns:1fr}}
+    @media (max-width:768px){.order-container{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
   <nav class="nav">
     <div class="nav-inner">
-      <div class="logo-container"><span class="logo-text">Kishca</span></div>
+      <div class="logo-container">
+        <img class="logo" src="logo.png" alt="Kishca Logo" />
+        <span class="logo-text">Kishca</span>
+      </div>
       <div class="menu">
         <a href="#start" class="active">Start</a>
         <a href="#produkte">Produkte</a>
@@ -89,14 +86,24 @@
     <div class="panel">
       <h2 class="section-title">Unsere Produkte</h2>
       <div class="products-grid">
-        <div class="product-card" onclick="openModal('bild1.jpg')">
-          <img src="bild1.jpg" alt="Indischer Stoff" />
-          <div class="product-caption">Edle Stoffe</div>
-        </div>
-        <div class="product-card" onclick="openModal('bild2.jpg')">
-          <img src="bild2.jpg" alt="Handgefertigtes Holzwerk" />
-          <div class="product-caption">Holzwerke</div>
-        </div>
+        <div class="product-card" onclick="openModal('PHOTO-2025-11-18-14-08-20.jpg')"><img src="PHOTO-2025-11-18-14-08-20.jpg" alt="Produkt 1" /><div class="product-caption">Produkt 1</div></div>
+        <div class="product-card" onclick="openModal('PHOTO-2025-11-18-14-08-20 2.jpg')"><img src="PHOTO-2025-11-18-14-08-20 2.jpg" alt="Produkt 2" /><div class="product-caption">Produkt 2</div></div>
+        <div class="product-card" onclick="openModal('PHOTO-2025-11-18-14-08-20 3.jpg')"><img src="PHOTO-2025-11-18-14-08-20 3.jpg" alt="Produkt 3" /><div class="product-caption">Produkt 3</div></div>
+        <div class="product-card" onclick="openModal('PHOTO-2025-11-18-14-08-21.jpg')"><img src="PHOTO-2025-11-18-14-08-21.jpg" alt="Produkt 4" /><div class="product-caption">Produkt 4</div></div>
+        <div class="product-card" onclick="openModal('PHOTO-2025-11-18-14-08-21 2.jpg')"><img src="PHOTO-2025-11-18-14-08-21 2.jpg" alt="Produkt 5" /><div class="product-caption">Produkt 5</div></div>
+        <div class="product-card" onclick="openModal('PHOTO-2025-11-18-14-08-21 3.jpg')"><img src="PHOTO-2025-11-18-14-08-21 3.jpg" alt="Produkt 6" /><div class="product-caption">Produkt 6</div></div>
+        <div class="product-card" onclick="openModal('PHOTO-2025-11-18-14-08-21 4.jpg')"><img src="PHOTO-2025-11-18-14-08-21 4.jpg" alt="Produkt 7" /><div class="product-caption">Produkt 7</div></div>
+        <div class="product-card" onclick="openModal('PHOTO-2025-11-18-14-08-21 5.jpg')"><img src="PHOTO-2025-11-18-14-08-21 5.jpg" alt="Produkt 8" /><div class="product-caption">Produkt 8</div></div>
+        <div class="product-card" onclick="openModal('PHOTO-2025-11-18-14-08-21 6.jpg')"><img src="PHOTO-2025-11-18-14-08-21 6.jpg" alt="Produkt 9" /><div class="product-caption">Produkt 9</div></div>
+        <div class="product-card" onclick="openModal('PHOTO-2025-11-18-14-08-21 7.jpg')"><img src="PHOTO-2025-11-18-14-08-21 7.jpg" alt="Produkt 10" /><div class="product-caption">Produkt 10</div></div>
+        <div class="product-card" onclick="openModal('PHOTO-2025-11-18-14-08-21 8.jpg')"><img src="PHOTO-2025-11-18-14-08-21 8.jpg" alt="Produkt 11" /><div class="product-caption">Produkt 11</div></div>
+        <div class="product-card" onclick="openModal('PHOTO-2025-11-18-14-08-21 9.jpg')"><img src="PHOTO-2025-11-18-14-08-21 9.jpg" alt="Produkt 12" /><div class="product-caption">Produkt 12</div></div>
+        <div class="product-card" onclick="openModal('PHOTO-2025-11-18-14-08-22.jpg')"><img src="PHOTO-2025-11-18-14-08-22.jpg" alt="Produkt 13" /><div class="product-caption">Produkt 13</div></div>
+        <div class="product-card" onclick="openModal('PHOTO-2025-11-18-14-08-23.jpg')"><img src="PHOTO-2025-11-18-14-08-23.jpg" alt="Produkt 14" /><div class="product-caption">Produkt 14</div></div>
+        <div class="product-card" onclick="openModal('PHOTO-2025-11-18-14-08-23 2.jpg')"><img src="PHOTO-2025-11-18-14-08-23 2.jpg" alt="Produkt 15" /><div class="product-caption">Produkt 15</div></div>
+        <div class="product-card" onclick="openModal('PHOTO-2025-11-18-14-08-23 3.jpg')"><img src="PHOTO-2025-11-18-14-08-23 3.jpg" alt="Produkt 16" /><div class="product-caption">Produkt 16</div></div>
+        <div class="product-card" onclick="openModal('JPEG-Bild.JPEG')"><img src="JPEG-Bild.JPEG" alt="Produkt 17" /><div class="product-caption">Produkt 17</div></div>
+        <div class="product-card" onclick="openModal('JPEG-Bild 2.JPEG')"><img src="JPEG-Bild 2.JPEG" alt="Produkt 18" /><div class="product-caption">Produkt 18</div></div>
       </div>
     </div>
   </section>
@@ -128,8 +135,7 @@
     <div class="footer-row">
       <div>&copy; 2026 Kishca – Hochwertige Stoffe &amp; Holzwerke aus Indien</div>
       <div class="legal">
-        <a href="#impressum">Impressum</a>
-        <a href="#datenschutz">Datenschutz</a>
+        <a href="Impressum-Kishca%20copy.html">Impressum &amp; Datenschutz</a>
       </div>
     </div>
   </footer>
